@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Disques</title>
+    <!-- Ajoutez la référence au fichier Bootstrap CSS (à télécharger ou à partir d'un CDN) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Ajoutez du CSS pour mettre en forme les éléments */
@@ -33,38 +34,33 @@
     include("connexiondb.php");
 
     // Requête SQL pour récupérer les enregistrements de la table "disc"
-    $sql = "SELECT disc_title, disc_year, disc_picture, disc_genre, disc_label FROM disc";
-    
+    $sql = "SELECT disc_id, disc_title, disc_year, disc_picture, disc_genre, disc_label FROM disc";
+
     try {
         $result = $conn->query($sql);
-        
+
         // Vérification de la réussite de la requête
         if ($result->rowCount() > 0) {
             $count = 0;
-            echo '<div class="d-flex justify-content-between align-items-center">';
             echo '<h1>Liste des Disques (' . $result->rowCount() . ' disques)</h1>';
-            echo '<a class="btn btn-primary" href="add_form.php">Ajouter</a>'; // Bouton "Ajouter"
-            echo '</div>';
+            echo '<a class="btn btn-primary" href="add_form.php">Ajouter</a><hr>'; // Bouton Ajouter
             echo '<div class="disque-container">';
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 echo '<div class="disque">';
                 echo '<img src="img/' . $row['disc_picture'] . '" alt="Image du disque">';
                 echo '<div class="details">';
                 echo '<b>' . $row['disc_title'] . '</b>';
-                echo '<p>Label : ' . $row['disc_label'] . '</p>';
                 echo '<p>Année : ' . $row['disc_year'] . '</p>';
                 echo '<p>Genre : ' . $row['disc_genre'] . '</p>';
-                echo '<a class="btn btn-primary" href="detail.php?id=' . $row['disc_id'] . '">Détails</a>'; // Bouton "Détails" avec Bootstrap
+                echo '<p>Label : ' . $row['disc_label'] . '</p>';
+                echo '<a class="btn btn-primary" href="detail.php?disc_id=' . $row['disc_id'] . '">Détail</a>'; // Bouton Détail
                 echo '</div>';
                 echo '</div>';
                 $count++;
             }
             echo '</div>';
         } else {
-            echo '<div class="d-flex justify-content-between align-items-center">';
             echo '<h1>Liste des Disques (0 disque)</h1>';
-            echo '<a class="btn btn-primary" href="add_form.php">Ajouter</a>'; // Bouton "Ajouter"
-            echo '</div>';
             echo "Aucun enregistrement trouvé dans la table 'disc'.";
         }
     } catch (PDOException $e) {
@@ -74,5 +70,9 @@
     // Fermeture de la connexion à la base de données
     $conn = null;
     ?>
+    <!-- Ajoutez la référence au fichier Bootstrap JavaScript (facultatif si vous n'utilisez pas les fonctionnalités JavaScript de Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
