@@ -2,8 +2,8 @@
 // Inclure le fichier de connexion à la base de données
 include("connexiondb.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["disc_id"])) {
-    $disc_id = $_GET["disc_id"];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["disc_id"])) {
+    $disc_id = $_POST["disc_id"];
 
     // Requête SQL pour supprimer le disque avec l'ID spécifié
     $sql = "DELETE FROM disc WHERE disc_id = :disc_id";

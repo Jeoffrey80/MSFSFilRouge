@@ -53,7 +53,7 @@
                 $stmtArtiste = $conn->prepare($sqlArtiste);
                 $stmtArtiste->bindParam(":artist_id", $artist_id);
                 $stmtArtiste->execute();
-                
+
                 if ($stmtArtiste->rowCount() > 0) {
                     $rowArtiste = $stmtArtiste->fetch(PDO::FETCH_ASSOC);
                     $artiste = $rowArtiste['artist_name'];
@@ -72,7 +72,7 @@
                 echo '<p>Label : ' . $label . '</p>';
                 echo '<p>Prix : $' . $prix . '</p>'; // Affichage du prix
                 echo '<a class="btn btn-primary" href="update_form.php?disc_id=' . $disc_id . '">Modifier</a>';
-                echo '<a class="btn btn-danger" href="delete_script.php?disc_id=' . $disc_id . '">Supprimer</a>'; // Lien de suppression
+                echo '<a class="btn btn-danger" href="delete_form.php?disc_id=' . $disc_id . '">Supprimer</a>'; // Lien de suppression
                 echo '<a class="btn btn-secondary" href="index.php">Retour</a>';
                 echo '</div>';
                 echo '</div>';
