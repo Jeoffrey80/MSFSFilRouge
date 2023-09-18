@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="36; URL=/index.php">
+    <meta http-equiv="refresh" content="36; URL=index.php">
     <title>Formulaire envoyé</title>
-    <link rel="stylesheet" href="dist/assets/index.css">
+
 </head>
 <body>
 <header><!--Début du header pour la partie Layout(entete) -->
         <?php include 'header.php';?>
     </header><!--Fin du header pour la partie Layout(entete) -->
 <video id="myVideo" class="d-block video" width="1200" height="600" autoplay muted controls loop>
-          <source src="/video/lorenzo.mp4" type="video/mp4">
+          <source src="video/lorenzo.mp4" type="video/mp4">
  <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire

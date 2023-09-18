@@ -5,11 +5,12 @@ $title = "Accueil";
       <header><!--Début du header pour la partie Layout(entete) -->
         <?php include 'header.php';?>
     </header><!--Fin du header pour la partie Layout(entete) -->
+    <body>
     <main class="mt-auto">
       <br><br>
       <div class=" video-container d-flex justify-content-center couleur-navigation">
         <video id="myVideo" class="d-block video" width="900" height="450" autoplay muted controls loop>
-          <source src="/video/pizza_-_176 (360p).mp4" type="video/mp4">
+          <source src="video/pizza_-_176 (360p).mp4" type="video/mp4">
           Votre navigateur ne prend pas en charge la lecture de vidéos HTML5.
         </video>
 
@@ -22,16 +23,16 @@ $title = "Accueil";
             <div id="carouselaccueil" class="carousel slide" data-bs-ride="carousel" data-interval="2000">
               <div class="carousel-inner">
                 <div class="carouselmedia carousel-item active">
-                  <img src="/images_the_disctrict/bg.jpg" class="d-block" alt="..." style="width:900px;height:450px;">
+                  <img src="images_the_disctrict/bg.jpg" class="d-block" alt="..." style="width:900px;height:450px;">
                 </div>
                 <div class="carouselmedia carousel-item">
-                  <img src="/images_the_disctrict/bg1.jpeg" class="d-block" alt="..." style="width:900px;height:450px;">
+                  <img src="images_the_disctrict/bg1.jpeg" class="d-block" alt="..." style="width:900px;height:450px;">
                 </div>
                 <div class="carouselmedia carousel-item">
-                  <img src="/images_the_disctrict/bg2.jpeg" class="d-block" alt="..." style="width:900px;height:450px;">
+                  <img src="images_the_disctrict/bg2.jpeg" class="d-block" alt="..." style="width:900px;height:450px;">
                 </div>
                 <div class="carouselmedia carousel-item">
-                  <img src="/images_the_disctrict/bg3.jpeg" class="d-block" alt="..." style="width:900px;height:450px;">
+                  <img src="images_the_disctrict/bg3.jpeg" class="d-block" alt="..." style="width:900px;height:450px;">
                 </div>
               </div>
             </div>
@@ -51,18 +52,17 @@ $title = "Accueil";
           <p>une fusion exquise de saveurs rapides et de satisfaction gourmande,
             où chaque bouchée vous transporte vers un monde de délices.</p>
         </ul>
-        <a class="taillelogoaccueil mx-5"><img src="/images_the_disctrict/burger.jpg" class="d-block"
+        <a class="taillelogoaccueil mx-5"><img src="images_the_disctrict/burger.jpg" class="d-block"
             alt="..." style="width:250px;height:250px;"></a>&nbsp;
-        <a class=" taillelogoaccueil mx-5"><img src="/images_the_disctrict/pizza.jpg" class="d-block"
+        <a class=" taillelogoaccueil mx-5"><img src="images_the_disctrict/pizza.jpg" class="d-block"
             alt="..." style="width:250px;height:250px;"></a>&nbsp;
       </div><!--Corps de la page avec le slogan ainsi que quelques images-->
   </div>
+ 
   
-  <footer class="footer fixed-bottom"><!-- Début du pied de page avec les réseaux sociaux -->
+</main> 
+</body>
+<footer class="footer fixed-bottom"><!-- Début du pied de page avec les réseaux sociaux -->
   <?php include 'footer.php';?>
 </footer>
-
-  <script type="module" src="dist/assets/index.js"></script>
-</main>
-</body>
 </html>
