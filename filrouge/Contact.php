@@ -1,4 +1,24 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+
+$session_status = session_status();
+// Vérifier si l'utilisateur n'est pas connecté
+if ($session_status == PHP_SESSION_ACTIVE) {
+    echo "Une session est active.";
+} elseif ($session_status == PHP_SESSION_NONE) {
+    echo "Aucune session n'est active, mais les sessions sont activées.";
+} elseif ($session_status == PHP_SESSION_DISABLED) {
+    echo "Les sessions sont désactivées.";
+}
+
+
+if (!isset($_SESSION['pseudo'])) {
+  // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+  header("Location: connexion.php");
+  exit();
+}
 $title = "Contact";
 include 'header.php';
 ?>
@@ -103,6 +123,4 @@ include 'header.php';
 <foot>
   <?php include 'footer.php';?>
 </foot>
-
-<script type="module" src="dist/assets/index.js"></script>
 </html>

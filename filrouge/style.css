@@ -73,15 +73,15 @@ main{
 }
 
 .colorbtnplat{
-  background-color: #FEF4E8;
+  background-color: #f88901;
   color:#000000;
   border-color: #000000;
 }
 
 .colorbtnplat:hover{
   background-color: #000000;
-  color:#ffffff;
-  border-color: #ffffff;
+  color:#fd0000;
+  border-color: #ff0000;
 }
 
 .affichageincdec {

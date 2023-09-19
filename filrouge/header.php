@@ -65,6 +65,11 @@
                 <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
                 <button class="btn btn-outline-success color-search" type="submit">Rechercher</button>
               </form>
+              <br>
+              <form action="deconnexion.php" method="post">
+                <button class="btn btn-outline-success color-search" type="submit">Déconnexion</button>
+              </form>
+
             </ul>
 
           </div>
