@@ -50,6 +50,7 @@ function getDetailsPlat($conn, $id_plat) {
     <?php
     if (empty($_SESSION['panier'])) {
         echo '<p>Votre panier est vide.</p>';
+        echo '<a href="plat.php" class="btn btn-primary">Retourner aux plats</a>';
     } else {
         echo '<table class="table">';
         echo '<thead>';

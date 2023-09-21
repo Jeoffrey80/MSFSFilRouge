@@ -40,25 +40,9 @@
               <li class="nav-item">
                 <a class="nav-link custom-heading active fs-1" href="Contact.php">Contact</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle custom-heading active fs-1" href="#" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">Plats</a>
-                <ul class="dropdown-menu custom-heading" aria-labelledby="menudropdown">
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php">Choix</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Asiatique">Asiatiques</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Burger">Burgers</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Pâtes">Pâtes</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Pizzas">Pizzas</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Salades">Salades</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Sandwich">Sandwichs</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Veggies">Veggies</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Wraps">Wraps</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Kebab">Kebabs</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Libanais">Libanais</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Panini">Paininis</a></li>
-                    <li><a class="dropdown-item custom-heading active fs-2" href="Plats.php#Tacos">Tacos</a></li>
-                </ul>
-            </li>
+              <li class="nav-item">
+                <a class="nav-link custom-heading active fs-1" href="plat.php">Plats</a>
+              </li>
         </ul>
             <ul class="ml-auto">
               <form class="d-flex justify-content-right align-items-center " role="search">

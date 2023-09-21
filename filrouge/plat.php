@@ -41,6 +41,7 @@ function getPlatsParCategorie($conn, $categorie_id) {
     <title>Plats par Catégorie</title>
     <!-- Ajouter les liens CSS Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <?php include 'header.php';?>
 </head>
 <body>
 
@@ -95,4 +96,7 @@ function getPlatsParCategorie($conn, $categorie_id) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
+<foot><!-- Début du pied de page avec les réseaux sociaux -->
+  <?php include 'footer.php';?>
+</foot>
 </html>
