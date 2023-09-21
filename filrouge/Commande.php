@@ -1,4 +1,3 @@
-
 <!--Début du header pour la partie Layout(entete) -->
 <?php 
 error_reporting(E_ALL);
@@ -115,21 +114,13 @@ include 'header.php';?>
         <div class="container">
             <h1><b>Formulaire de contact</b></h1>
             <p><i><small>* Ces zones sont obligatoires</small></i></p>
-            <form method="post" action="index.php" onsubmit="return validerFormulaire();">
+            <form method="post" action="enregistrer_commande.php" onsubmit="return validerFormulaire();">
                 <div class="mx-2"><b>Vos coordonnées</b></div>
                 <div class="mt-2">
                     <div class="mx-2">
-                        <label for="nom"><b>Votre nom* :</b></label><br>
-                        <input type="text" id="nom" name="nom" required
+                        <label for="nom"><b>Votre nom/pseudo* :</b></label><br>
+                        <input type="text" id="nomprenom" name="nom" required
                             oninvalid="this.setCustomValidity('Veuillez marquer votre nom de famille (obligatoire!)')"
-                            oninput="this.setCustomValidity('')">
-                    </div>
-                </div>
-                <div class="mt-2">
-                    <div class="mx-2">
-                        <label for="prenom"><b>Votre prénom* :</b></label><br>
-                        <input type="text" id="prenom" name="prenom" required
-                            oninvalid="this.setCustomValidity('Veuillez marquer votre prénom (obligatoire!)')"
                             oninput="this.setCustomValidity('')">
                     </div>
                 </div>
@@ -153,7 +144,7 @@ include 'header.php';?>
                     <fieldset class="mx-2">
                         <div class="mx-2">
                             <label for="question"><b>Adresse :</b></label><br>
-                            <textarea id="question" name="question"
+                            <textarea id="adresse" name="adresse"
                                 placeholder="2 Rue du général Toto Apt290 au 6e étage" required
                                 oninvalid="this.setCustomValidity('L\'adresse est obligatoire !')"
                                 oninput="this.setCustomValidity('')"></textarea>
@@ -161,6 +152,7 @@ include 'header.php';?>
                         <p></p>
                     </fieldset>
                 </div>
+                <input type="hidden" id="id_utilisateur" name="id_utilisateur" value="<?php echo $_SESSION['id_utilisateur']; ?>">
                 <p><input type="checkbox" required class="mx-2" id="cgu"><b>* J'accepte le traitement informatique de ce
                         formulaire</b></p>
                 <div class="d-flex justify-content-center mx-4 mt-2 my-2">
@@ -173,21 +165,15 @@ include 'header.php';?>
         <!-- Inclure le fichier JavaScript -->
         <script>
             function validerFormulaire() {
-                const nom = document.getElementById("nom").value;
-                const prenom = document.getElementById("prenom").value;
+                const nomprenom = document.getElementById("nomprenom").value;
                 const telephone = document.getElementById("telephone").value;
                 const email = document.getElementById("email").value;
                 const cgu = document.getElementById("cgu").checked;
                 const regexEmail = /\S+@\S+\.\S+/;
                 const regexNumero = /^\d{10}$/;
 
-                if (nom.trim() === "") {
+                if (nomprenom.trim() === "") {
                     alert("Veuillez marquer votre nom de famille (obligatoire!)");
-                    return false;
-                }
-
-                if (prenom.trim() === "") {
-                    alert("Veuillez marquer votre prénom (obligatoire!)");
                     return false;
                 }
 
@@ -210,11 +196,10 @@ include 'header.php';?>
             }
 
             function resetForm() {
-                document.getElementById("nom").value = "";
-                document.getElementById("prenom").value = "";
+                document.getElementById("nomprenom").value = "";
                 document.getElementById("telephone").value = "";
                 document.getElementById("email").value = "";
-                document.getElementById("question").value = "";
+                document.getElementById("adresse").value = "";
                 document.getElementById("cgu").checked = false; // Décocher la case à cocher
             }
         </script>

@@ -578,7 +578,7 @@ include 'header.php';?>
         }else if (idProduit === 22) {
           produit.image ="images_the_disctrict/food/Plats/wrap1.jpeg";
           produit.nom = "Wraps aux pois chiches rôtis et à la feta";
-          produit.description = "pois chiche, oignon rouge, huile d'olice, crème de sucre, feta.";
+          produit.description = "pois chiche, oignon rouge, huile d'olive, crème de sucre, feta.";
           produit.prix = 4.20;
         } else if (idProduit === 23) {
           produit.image ="images_the_disctrict/food/Plats/wrap2.jpeg";
@@ -647,7 +647,7 @@ include 'header.php';?>
           produit.prix = 6.50;
         }else if (idProduit === 36) {
           produit.image ="images_the_disctrict/food/Plats/tacos3.jpeg";
-          produit.nom = "Recette de tacos au bœuf haché ";
+          produit.nom = "Recette de tacos aux 3 viandes ";
           produit.description = "Tacos 3 viandes: poulet,boeuf,mouton,frites,crudités.";
           produit.prix = 8.50;
         }

@@ -4,7 +4,8 @@ ini_set('display_errors', 1);
 session_start();
 
 $session_status = session_status();
-
+require 'filrouge/dao.php';
+$carouselContent = get_plats('localhost', 'district', 'jeoffrey', 'jojo123');
 if ($session_status == PHP_SESSION_ACTIVE) {
     echo "Une session est active.";
 } elseif ($session_status == PHP_SESSION_NONE) {
@@ -12,6 +13,7 @@ if ($session_status == PHP_SESSION_ACTIVE) {
 } elseif ($session_status == PHP_SESSION_DISABLED) {
     echo "Les sessions sont désactivées.";
 }
+$nomuser=$_SESSION['pseudo'];
 // Vérifier si l'utilisateur n'est pas connecté
 if (!isset($_SESSION['pseudo'])) {
   // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
@@ -22,18 +24,19 @@ $title = "Accueil";
 ?>
   <div class="parallax-bg">
       <header><!--Début du header pour la partie Layout(entete) -->
-        <?php include 'header.php';?>
+        <?php include 'header.php';
+        echo "Bienvenue à toi ".$nomuser." !";?>
     </header><!--Fin du header pour la partie Layout(entete) -->
     <body>
     <main class="mt-auto">
       <br><br>
-      <div class=" video-container d-flex justify-content-center couleur-navigation">
+      <!-- <div class=" video-container d-flex justify-content-center couleur-navigation">
         <video id="myVideo" class="d-block video" width="900" height="450" autoplay muted controls loop>
           <source src="video/pizza_-_176 (360p).mp4" type="video/mp4">
           Votre navigateur ne prend pas en charge la lecture de vidéos HTML5.
         </video>
 
-      </div>
+      </div> -->
       <br><br>
       <div class="d-flex justify-content-center couleur-navigation"><!--Début de la partie Carousel-->
         &nbsp;
@@ -77,8 +80,37 @@ $title = "Accueil";
             alt="..." style="width:250px;height:250px;"></a>&nbsp;
       </div><!--Corps de la page avec le slogan ainsi que quelques images-->
   </div>
- 
-  
+  <div class="row bg-light">
+		    <div class="card my-5 border-0 rounded-0">
+	<div class="row">
+	<div class="col-md-6">
+  <div id="platsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicateurs -->
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#platsCarousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#platsCarousel" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#platsCarousel" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#platsCarousel" data-bs-slide-to="3"></li>
+                    <li data-bs-target="#platsCarousel" data-bs-slide-to="4"></li>
+                    <li data-bs-target="#platsCarousel" data-bs-slide-to="5"></li>
+                    <!-- Ajoutez autant d'indicateurs que nécessaire -->
+                </ol>
+
+                <!-- Slides du carrousel -->
+                <div class="carousel-inner">
+				<?php echo $carouselContent; ?> 
+                </div>
+                <!-- Contrôles du carrousel -->
+                <a class="carousel-control-prev" href="#platsCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#platsCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+</div>
 </main> 
 </body>
 <footer class="footer fixed-bottom"><!-- Début du pied de page avec les réseaux sociaux -->

@@ -94,6 +94,12 @@ main{
   
 }
 
+.custom-carousel-image {
+  width: 250px; /* Largeur de l'image de référence pour les nems */
+  height: 250px; /* Hauteur de l'image de référence pour les nems */
+  object-fit: cover; /* Assurez-vous que toutes les images conservent leurs proportions */
+}
+
 .affichageincdec:hover {
   background-color: black;
   /* Couleur de fond de l'affichage */
