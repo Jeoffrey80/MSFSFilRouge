@@ -4,8 +4,9 @@ ini_set('display_errors', 1);
 session_start();
 
 $session_status = session_status();
-require 'filrouge/dao.php';
+require 'dao.php';
 $carouselContent = get_plats('localhost', 'district', 'jeoffrey', 'jojo123');
+$carouselCategorie = get_categories('localhost', 'district', 'jeoffrey', 'jojo123');
 if ($session_status == PHP_SESSION_ACTIVE) {
     echo "Une session est active.";
 } elseif ($session_status == PHP_SESSION_NONE) {
@@ -80,11 +81,51 @@ $title = "Accueil";
             alt="..." style="width:250px;height:250px;"></a>&nbsp;
       </div><!--Corps de la page avec le slogan ainsi que quelques images-->
   </div>
-  <div class="row bg-light">
+ 
+<div class="carouselcategorie">
+<div>
 		    <div class="card my-5 border-0 rounded-0">
 	<div class="row">
 	<div class="col-md-6">
-  <div id="platsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="categorieCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicateurs -->
+                
+
+                <!-- Slides du carrousel -->
+                <div class="carousel-inner">
+				<?php echo $carouselCategorie; ?> 
+                </div>
+                <!-- Contrôles du carrousel -->
+                <a class="carousel-control-prev" href="#categorieCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#categorieCarousel" role="button" data-bs-slide="next">
+    			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+   				<span class="visually-hidden">Next</span>
+				</a>
+
+            </div>
+				</div>
+			<div class="col-md-6">
+        <div class="card-body px-0"> <!-- Crée le corps de la carte avec aucun espace de remplissage horizontal -->
+            <h3 class="card-title">Nos Catégorie les plus populaires</h3>
+            <p class="card-text">
+                Pour découvrir les autres catégories cliquer ci-dessous
+            </p>
+			<p class="card-text"><a href="Categorie.php" class="btn text-muted">Découvrir les catégories</a></p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+		    <div class="card my-5 border-0 rounded-0">
+	<div class="row">
+	<div class="col-md-6">
+            <div id="platsCarousel" class="carousel slide" data-bs-ride="carousel">
                 <!-- Indicateurs -->
                 <ol class="carousel-indicators">
                     <li data-bs-target="#platsCarousel" data-bs-slide-to="0" class="active"></li>
@@ -93,12 +134,11 @@ $title = "Accueil";
                     <li data-bs-target="#platsCarousel" data-bs-slide-to="3"></li>
                     <li data-bs-target="#platsCarousel" data-bs-slide-to="4"></li>
                     <li data-bs-target="#platsCarousel" data-bs-slide-to="5"></li>
-                    <!-- Ajoutez autant d'indicateurs que nécessaire -->
                 </ol>
 
                 <!-- Slides du carrousel -->
                 <div class="carousel-inner">
-				<?php echo $carouselContent; ?> 
+				 <?php echo $carouselContent; ?> 
                 </div>
                 <!-- Contrôles du carrousel -->
                 <a class="carousel-control-prev" href="#platsCarousel" role="button" data-bs-slide="prev">
@@ -110,6 +150,19 @@ $title = "Accueil";
                     <span class="visually-hidden">Next</span>
                 </a>
             </div>
+				</div>
+			<div class="col-md-6">
+        <div class="card-body px-0"> <!-- Crée le corps de la carte avec aucun espace de remplissage horizontal -->
+            <h3 class="card-title">Nos Plats les plus vendus</h3>
+            <p class="card-text">
+                Pour découvrir les autres plats cliquer ci-dessous
+            </p>
+			<p class="card-text"><a href="plat.php" class="btn text-muted">Découvrir les plats</a></p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </div>
 </main> 
 </body>

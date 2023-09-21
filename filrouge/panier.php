@@ -8,17 +8,18 @@ if (!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = array();
 }
 
-$id_plat = $_POST['id_plat'];
-$quantite = $_POST['quantite'];
+// Vérifier si les clés existent dans $_POST
+$id_plat = isset($_POST['id_plat']) ? $_POST['id_plat'] : null;
+$quantite = isset($_POST['quantite']) ? $_POST['quantite'] : null;
 
-// Ajouter le plat au panier
-if (isset($_SESSION['panier'][$id_plat])) {
-    $_SESSION['panier'][$id_plat] += $quantite;
-} else {
-    $_SESSION['panier'][$id_plat] = $quantite;
+if ($id_plat !== null && $quantite !== null) {
+    // Ajouter le plat au panier
+    if (isset($_SESSION['panier'][$id_plat])) {
+        $_SESSION['panier'][$id_plat] += $quantite;
+    } else {
+        $_SESSION['panier'][$id_plat] = $quantite;
+    }
 }
-
-
 
 // Inclure le fichier de connexion à la base de données
 require_once 'db_connection.php';
@@ -30,7 +31,6 @@ function getDetailsPlat($conn, $id_plat) {
     $requete_plat->execute();
     return $requete_plat->fetch(PDO::FETCH_ASSOC);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +89,11 @@ function getDetailsPlat($conn, $id_plat) {
 
         echo '<h3>Total du Panier : $' . $total_panier . '</h3>';
 
-        // Vous pouvez ajouter le formulaire pour compléter la commande ici
+        // Ajouter le bouton "Retourner aux plats"
+        echo '<a href="plat.php" class="btn btn-primary">Retourner aux plats</a>';
+
+        // Ajouter le bouton "Réinitialiser la commande"
+        echo '<a href="reset_panier.php" class="btn btn-danger">Réinitialiser la commande</a>';
     }
     ?>
 </div>

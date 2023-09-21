@@ -100,6 +100,11 @@ main{
   object-fit: cover; /* Assurez-vous que toutes les images conservent leurs proportions */
 }
 
+.carouselcategorie img {
+  width: 1000px; /* Ajuster la largeur de l'image pour qu'elle s'adapte au conteneur */
+  height: 500px; /* Conserver le rapport hauteur/largeur d'origine de l'image */
+  object-fit: cover; /* Assurez-vous que toutes les images conservent leurs proportions */
+}
 .affichageincdec:hover {
   background-color: black;
   /* Couleur de fond de l'affichage */
