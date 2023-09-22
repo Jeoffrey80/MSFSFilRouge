@@ -13,11 +13,16 @@ $id_plat = isset($_POST['id_plat']) ? $_POST['id_plat'] : null;
 $quantite = isset($_POST['quantite']) ? $_POST['quantite'] : null;
 
 if ($id_plat !== null && $quantite !== null) {
-    // Ajouter le plat au panier
-    if (isset($_SESSION['panier'][$id_plat])) {
-        $_SESSION['panier'][$id_plat] += $quantite;
+    // Supprimer le plat du panier si la quantité est de 0
+    if ($quantite === '0') {
+        unset($_SESSION['panier'][$id_plat]);
     } else {
-        $_SESSION['panier'][$id_plat] = $quantite;
+        // Ajouter le plat au panier
+        if (isset($_SESSION['panier'][$id_plat])) {
+            $_SESSION['panier'][$id_plat] += $quantite;
+        } else {
+            $_SESSION['panier'][$id_plat] = $quantite;
+        }
     }
 }
 

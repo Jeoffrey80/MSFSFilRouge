@@ -66,7 +66,7 @@ function getPlatsParCategorie($conn, $categorie_id) {
         echo '<div class="row">';
         foreach ($plats as $plat) {
             echo '<div class="col-md-4 mb-4">';
-            echo '<div class="card">';
+            echo '<div class="card h-100">';
             echo '<img src="' . $plat['image'] . '" class="card-img-top" alt="Image Plat">';
             echo '<div class="card-body">';
             echo '<h5 class="card-title">' . $plat['libelle'] . '</h5>';
@@ -78,7 +78,7 @@ function getPlatsParCategorie($conn, $categorie_id) {
             echo '<label for="quantite' . $plat['id'] . '">Quantité :</label>';
             echo '<input type="number" name="quantite" id="quantite' . $plat['id'] . '" class="form-control" min="0" value="0">';
             echo '</div>';
-            echo '<button type="submit" class="btn btn-primary">Ajouter au panier</button>';
+            echo '<button type="submit" class="btn btn-primary ' . ($plat['quantite'] === 0 ? 'disabled' : '') . '">Ajouter au panier</button>';
             echo '</form>';
             echo '</div>';
             echo '</div>';
@@ -99,4 +99,44 @@ function getPlatsParCategorie($conn, $categorie_id) {
 <foot><!-- Début du pied de page avec les réseaux sociaux -->
   <?php include 'footer.php';?>
 </foot>
+
+<script>
+    function ajouterPlatsAuPanier() {
+        // Collecter les données pour chaque plat et les envoyer au panier.php
+        var plats = [];
+
+        <?php
+            // Récupérer les plats
+            foreach ($plats as $plat) {
+                echo 'var quantite' . $plat['id'] . ' = parseInt(document.getElementById("quantite' . $plat['id'] . '").value, 10);';
+                echo 'if (quantite' . $plat['id'] . ' > 0) {';
+                echo 'plats.push({ id: ' . $plat['id'] . ', quantite: quantite' . $plat['id'] . ' });';
+                echo '}';
+            }
+        ?>
+
+        // Envoyer les données au panier.php
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = 'panier.php';
+
+        for (var i = 0; i < plats.length; i++) {
+            var inputIdPlat = document.createElement('input');
+            inputIdPlat.type = 'hidden';
+            inputIdPlat.name = 'id_plat[]';
+            inputIdPlat.value = plats[i].id;
+
+            var inputQuantite = document.createElement('input');
+            inputQuantite.type = 'hidden';
+            inputQuantite.name = 'quantite[]';
+            inputQuantite.value = plats[i].quantite;
+
+            form.appendChild(inputIdPlat);
+            form.appendChild(inputQuantite);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 </html>
