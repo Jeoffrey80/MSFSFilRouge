@@ -90,6 +90,8 @@ function getDetailsPlat($conn, $id_plat) {
             }
         }
 
+        $_SESSION['montant_total'] = $total_panier;
+
         echo '</tbody>';
         echo '</table>';
 
@@ -100,6 +102,9 @@ function getDetailsPlat($conn, $id_plat) {
 
         // Ajouter le bouton "Réinitialiser la commande"
         echo '<a href="reset_panier.php" class="btn btn-danger">Réinitialiser la commande</a>';
+
+        //Ajouter le bouton "Finaliser la commande"
+        echo '<a href="formmail.php" class="btn btn-success">Finaliser la commande</a>';
     }
     ?>
 </div>

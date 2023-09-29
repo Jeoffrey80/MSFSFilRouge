@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -14,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'votre_adresse_email@gmail.com'; // Votre adresse Gmail complète
-    $mail->Password = 'votre_mot_de_passe'; // Mot de passe de votre adresse Gmail
+    $mail->Username = 'dprogprogdistrict@gmail.com'; // Votre adresse e-mail Gmail
+    $mail->Password = '12345district'; // Votre mot de passe Gmail
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
