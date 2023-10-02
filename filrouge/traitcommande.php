@@ -3,9 +3,11 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
 
-
 // Inclure le fichier de connexion à la base de données
 require_once 'db_connection.php';
+
+// Inclure la bibliothèque PHPMailer
+require 'vendor/autoload.php';
 
 // Récupérer les données du formulaire
 $nom = $_POST['nom'];
@@ -31,9 +33,31 @@ $requete->bindParam(':montant_total', $montant_total);
 
 if ($requete->execute()) {
     // La commande a été enregistrée avec succès dans la base de données
-    // Vous pouvez ajouter ici d'autres actions, comme vider le panier, envoyer un e-mail de confirmation, etc.
+
+    // Envoi de l'e-mail de confirmation
+    $mail = new PHPMailer;
+
+    // Configurer le serveur SMTP (ici, je suppose que vous utilisez MailHog sur le port 1025)
+    $mail->isSMTP();
+    $mail->Host = 'localhost';
+    $mail->Port = 1025;
+
+    // Configurer l'expéditeur et le destinataire
+    $mail->setFrom('votre@adresse.com', 'Votre nom');
+    $mail->addAddress($email, $nom);
+
+    // Contenu de l'e-mail
+    $mail->Subject = 'Confirmation de commande';
+    $mail->Body = 'Votre commande a été enregistrée avec succès. Voici le détail de votre commande : ' . $articles;
+
+    if(!$mail->send()) {
+        echo 'Erreur lors de l\'envoi du mail : ' . $mail->ErrorInfo;
+    } else {
+        echo 'E-mail de confirmation envoyé avec succès.';
+    }
+
     unset($_SESSION['panier']); // Vider le panier
-    header ("location: index.php");
+    header("location: index.php");
     exit();
 } else {
     echo 'Une erreur s\'est produite lors de l\'enregistrement de la commande.';
