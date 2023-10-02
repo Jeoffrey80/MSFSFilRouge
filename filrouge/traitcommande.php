@@ -35,7 +35,7 @@ if ($requete->execute()) {
     // La commande a été enregistrée avec succès dans la base de données
 
     // Envoi de l'e-mail de confirmation
-    $mail = new PHPMailer;
+    $mail = new PHPMailer();
 
     // Configurer le serveur SMTP (ici, je suppose que vous utilisez MailHog sur le port 1025)
     $mail->isSMTP();
