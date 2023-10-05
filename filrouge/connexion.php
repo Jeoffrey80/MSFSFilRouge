@@ -11,18 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pseudo = $_POST["pseudo"];
     $password = $_POST["password"];
 
-    // Connexion à la base de données en utilisant PDO
-    $servername = "localhost"; // Remplacez par le nom de votre serveur
-    $username = "lavallee"; // Remplacez par votre nom d'utilisateur de la base de données
-    $password_db = "Admin1234"; // Remplacez par votre mot de passe de la base de données
-    $dbname = "lavallee"; // Remplacez par le nom de votre base de données
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password_db);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db = new PDO('mysql:host=localhost;dbname=lavallee', 'lavallee', 'Admin1234');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Requête pour obtenir le mot de passe haché associé au pseudo
-        $stmt = $conn->prepare("SELECT mdp FROM utilisateur WHERE pseudo = :pseudo");
+        $stmt = $db->prepare("SELECT mdp FROM utilisateur WHERE pseudo = :pseudo");
         $stmt->bindParam(':pseudo', $pseudo);
         $stmt->execute();
         $row = $stmt->fetch();
