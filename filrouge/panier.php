@@ -30,8 +30,8 @@ if ($id_plat !== null && $quantite !== null) {
 require_once 'db_connection.php';
 
 // Fonction pour récupérer les détails d'un plat par son ID
-function getDetailsPlat($conn, $id_plat) {
-    $requete_plat = $conn->prepare("SELECT * FROM plat WHERE id = :id_plat");
+function getDetailsPlat($db, $id_plat) {
+    $requete_plat = $db->prepare("SELECT * FROM plat WHERE id = :id_plat");
     $requete_plat->bindParam(':id_plat', $id_plat);
     $requete_plat->execute();
     return $requete_plat->fetch(PDO::FETCH_ASSOC);
@@ -73,7 +73,7 @@ function getDetailsPlat($conn, $id_plat) {
         $total_panier = 0;
 
         foreach ($_SESSION['panier'] as $plat_id => $quantite) {
-            $plat = getDetailsPlat($conn, $plat_id);
+            $plat = getDetailsPlat($db, $plat_id);
 
             if ($plat) {
                 $total_plat = $quantite * $plat['prix'];
