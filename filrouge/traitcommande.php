@@ -14,7 +14,7 @@ try {
 } catch (PDOException $e) {
     die("La connexion à la base de données a échoué : " . $e->getMessage());
 }
-require_once 'Panier.php';
+require_once 'panier.php';
 
 // Inclure la bibliothèque PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
