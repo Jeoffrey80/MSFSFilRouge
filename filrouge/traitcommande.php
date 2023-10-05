@@ -66,7 +66,7 @@ try {
         }
     }
     $mail->Body .= 'Montant total de la commande : $' . $montant_total . '<br><br>';
-    $mail->Body .= 'Cordialement,<br>Votre Nom';
+    $mail->Body .= 'Cordialement,<br>La bible';
 
     // Envoyer l'e-mail
     $mail->send();
