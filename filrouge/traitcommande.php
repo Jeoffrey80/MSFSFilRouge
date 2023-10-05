@@ -25,7 +25,7 @@ $montant_total = isset($_SESSION['montant_total']) ? $_SESSION['montant_total'] 
 $sql = "INSERT INTO totmail (nom, email, telephone, adresse, articles, montant_total) VALUES (:nom, :email, :telephone, :adresse, :articles, :montant_total)";
 
 // Préparer la requête et l'exécuter
-$requete = $conn->prepare($sql);
+$requete = $db->prepare($sql);
 $requete->bindParam(':nom', $nom);
 $requete->bindParam(':email', $email);
 $requete->bindParam(':telephone', $telephone);
@@ -55,7 +55,7 @@ if ($requete->execute()) {
     $mail->Body    = 'Cher ' . $nom . ',<br><br>';
     $mail->Body    .= 'Votre commande a été enregistrée avec succès. Merci de votre achat !<br><br>';
     foreach ($_SESSION['panier'] as $plat_id => $quantite) {
-        $plat = getDetailsPlat($conn, $plat_id);
+        $plat = getDetailsPlat($db, $plat_id);
     
         if ($plat) {
             $mail->Body .= 'Nom de l\'article : ' . $plat['libelle'] . '<br>';
