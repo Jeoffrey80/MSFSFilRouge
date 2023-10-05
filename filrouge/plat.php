@@ -78,7 +78,7 @@ function getPlatsParCategorie($conn, $categorie_id) {
             echo '<label for="quantite' . $plat['id'] . '">Quantité :</label>';
             echo '<input type="number" name="quantite" id="quantite' . $plat['id'] . '" class="form-control" min="0" value="0">';
             echo '</div>';
-            echo '<button type="submit" class="btn btn-primary ' . ($plat['quantite'] === 0 ? 'disabled' : '') . '">Ajouter au panier</button>';
+            echo '<button type="submit" class="btn btn-primary">Ajouter au panier</button>';
             echo '</form>';
             echo '</div>';
             echo '</div>';

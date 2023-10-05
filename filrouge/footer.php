@@ -34,6 +34,11 @@
         });
       });
     </script>
+    &nbsp &nbsp &nbsp &nbsp &nbsp
+    <div>
+        <a href="politique_confidentialite.php">Politique de confidentialité</a> &nbsp
+        <a href="mentions_legales.php">Mentions Légales</a>
+</div>
         </div><!--Fin de la partie Réseaux Sociaux-->
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>

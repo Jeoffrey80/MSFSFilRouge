@@ -45,13 +45,8 @@ function get_plats($host, $dbname, $username, $password)
     }
     return $carouselHtml;
 }
+
 ?>
-
-
-
-
-
-
 
 <?php
 
@@ -87,7 +82,7 @@ function get_categories($host, $dbname, $username, $password)
         
             $carouselHtml .= '<div class="carousel-item ' . $activeClass . '">';
             // Ajoutez l'image de la catégorie
-            $carouselHtml .= '<img src="' . $categorieImage . '" alt="Image de la catégorie">';
+            $carouselHtml .= '<img src="' . $categorieImage . '" alt="Image de la catégorie" class="d-block w-100">';
             $carouselHtml .= '<h3>Catégorie : ' . $categorie . '</h3>';
             $carouselHtml .= '</div>';
         
@@ -100,4 +95,5 @@ function get_categories($host, $dbname, $username, $password)
 
     return $carouselHtml;
 }
+
 ?>

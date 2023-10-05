@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
@@ -7,6 +7,7 @@ $session_status = session_status();
 require 'dao.php';
 $carouselContent = get_plats('localhost', 'district', 'jeoffrey', 'jojo123');
 $carouselCategorie = get_categories('localhost', 'district', 'jeoffrey', 'jojo123');
+
 if ($session_status == PHP_SESSION_ACTIVE) {
     echo "Une session est active.";
 } elseif ($session_status == PHP_SESSION_NONE) {
@@ -14,21 +15,31 @@ if ($session_status == PHP_SESSION_ACTIVE) {
 } elseif ($session_status == PHP_SESSION_DISABLED) {
     echo "Les sessions sont désactivées.";
 }
-$nomuser=$_SESSION['pseudo'];
-// Vérifier si l'utilisateur n'est pas connecté
-if (!isset($_SESSION['pseudo'])) {
-  // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-  header("Location: connexion.php");
-  exit();
-}
+
+$nomuser = isset($_SESSION['pseudo']) ? $_SESSION['pseudo'] : '';
+
 $title = "Accueil";
 ?>
-  <div class="parallax-bg">
-      <header><!--Début du header pour la partie Layout(entete) -->
-        <?php include 'header.php';
-        echo "Bienvenue à toi ".$nomuser." !";?>
-    </header><!--Fin du header pour la partie Layout(entete) -->
-    <body>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - <?= $title ?></title>
+    <link rel="stylesheet" href="styles.css"> <!-- Assurez-vous d'avoir le bon chemin vers votre fichier CSS -->
+
+</head>
+
+<body>
+
+    <header>
+        <?php include 'header.php'; ?>
+        <?php echo "Bienvenue à toi " . $nomuser . " !"; ?>
+    </header>
+
     <main class="mt-auto">
       <br><br>
       <!-- <div class=" video-container d-flex justify-content-center couleur-navigation">
@@ -81,92 +92,99 @@ $title = "Accueil";
             alt="..." style="width:250px;height:250px;"></a>&nbsp;
       </div><!--Corps de la page avec le slogan ainsi que quelques images-->
   </div>
- 
-<div class="carouselcategorie">
-<div>
-		    <div class="card my-5 border-0 rounded-0">
-	<div class="row">
-	<div class="col-md-6">
-            <div id="categorieCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicateurs -->
-                
+<br><br><br><br><br><br><br><br><br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="carouselcategorie">
+                        <!-- Le contenu du carrousel pour les catégories peut être placé ici -->
+                        <div>
+                            <div class="card my-5 border-0 rounded-0">
+                                <!-- Contenu du carrousel pour les catégories -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="categorieCarousel" class="carousel slide" data-bs-ride="carousel">
+                                            <!-- Indicateurs -->
+                                            <ol class="carousel-indicators">
+                                                <li data-bs-target="#catCarousel" data-bs-slide-to="0" class="active"></li>
+                                                <li data-bs-target="#catCarousel" data-bs-slide-to="1"></li>
+                                                <li data-bs-target="#catCarousel" data-bs-slide-to="2"></li>
+                                                <li data-bs-target="#catCarousel" data-bs-slide-to="3"></li>
+                                                <li data-bs-target="#catCarousel" data-bs-slide-to="4"></li>
+                                                <li data-bs-target="#catCarousel" data-bs-slide-to="5"></li>
+                                            </ol>
+                                            <!-- Slides du carrousel -->
+                                            <div class="carousel-inner">
+                                                <?php echo $carouselCategorie; ?>
+                                            </div>
+                                            <!-- Contrôles du carrousel -->
+                                            <a class="carousel-control-prev" href="#categorieCarousel" role="button"
+                                                data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#categorieCarousel" role="button"
+                                                data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </a>
 
-                <!-- Slides du carrousel -->
-                <div class="carousel-inner">
-				<?php echo $carouselCategorie; ?> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Contrôles du carrousel -->
-                <a class="carousel-control-prev" href="#categorieCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#categorieCarousel" role="button" data-bs-slide="next">
-    			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-   				<span class="visually-hidden">Next</span>
-				</a>
 
-            </div>
-				</div>
-			<div class="col-md-6">
-        <div class="card-body px-0"> <!-- Crée le corps de la carte avec aucun espace de remplissage horizontal -->
-            <h3 class="card-title">Nos Catégorie les plus populaires</h3>
-            <p class="card-text">
-                Pour découvrir les autres catégories cliquer ci-dessous
-            </p>
-			<p class="card-text"><a href="Categorie.php" class="btn text-muted">Découvrir les catégories</a></p>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div>
-		    <div class="card my-5 border-0 rounded-0">
-	<div class="row">
-	<div class="col-md-6">
-            <div id="platsCarousel" class="carousel slide" data-bs-ride="carousel">
-                <!-- Indicateurs -->
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#platsCarousel" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#platsCarousel" data-bs-slide-to="1"></li>
-                    <li data-bs-target="#platsCarousel" data-bs-slide-to="2"></li>
-                    <li data-bs-target="#platsCarousel" data-bs-slide-to="3"></li>
-                    <li data-bs-target="#platsCarousel" data-bs-slide-to="4"></li>
-                    <li data-bs-target="#platsCarousel" data-bs-slide-to="5"></li>
-                </ol>
+                <div class="col-md-6">
+                    <div class="carouselplats">
+                        <!-- Le contenu du carrousel pour les plats peut être placé ici -->
+                        <div>
+                            <div class="card my-5 border-0 rounded-0">
+                                <!-- Contenu du carrousel pour les plats -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div id="platsCarousel" class="carousel slide" data-bs-ride="carousel">
+                                            <!-- Indicateurs -->
+                                            <ol class="carousel-indicators">
+                                                <li data-bs-target="#platsCarousel" data-bs-slide-to="0" class="active"></li>
+                                                <li data-bs-target="#platsCarousel" data-bs-slide-to="1"></li>
+                                                <li data-bs-target="#platsCarousel" data-bs-slide-to="2"></li>
+                                                <li data-bs-target="#platsCarousel" data-bs-slide-to="3"></li>
+                                                <li data-bs-target="#platsCarousel" data-bs-slide-to="4"></li>
+                                                <li data-bs-target="#platsCarousel" data-bs-slide-to="5"></li>
+                                            </ol>
 
-                <!-- Slides du carrousel -->
-                <div class="carousel-inner">
-				 <?php echo $carouselContent; ?> 
+                                            <!-- Slides du carrousel -->
+                                            <div class="carousel-inner">
+                                                <?php echo $carouselContent; ?>
+                                            </div>
+                                            <!-- Contrôles du carrousel -->
+                                            <a class="carousel-control-prev" href="#platsCarousel" role="button"
+                                                data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#platsCarousel" role="button"
+                                                data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- Contrôles du carrousel -->
-                <a class="carousel-control-prev" href="#platsCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#platsCarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
             </div>
-				</div>
-			<div class="col-md-6">
-        <div class="card-body px-0"> <!-- Crée le corps de la carte avec aucun espace de remplissage horizontal -->
-            <h3 class="card-title">Nos Plats les plus vendus</h3>
-            <p class="card-text">
-                Pour découvrir les autres plats cliquer ci-dessous
-            </p>
-			<p class="card-text"><a href="plat.php" class="btn text-muted">Découvrir les plats</a></p>
         </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</main> 
+    </main>
+
+    <footer class="footer fixed-bottom">
+        <?php include 'footer.php'; ?>
+    </footer>
+
+    <script src="scripts.js"></script> <!-- Assurez-vous d'avoir le bon chemin vers votre fichier JavaScript -->
 </body>
-<footer class="footer fixed-bottom"><!-- Début du pied de page avec les réseaux sociaux -->
-  <?php include 'footer.php';?>
-</footer>
 </html>
