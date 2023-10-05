@@ -5,8 +5,8 @@ session_start();
 
 $session_status = session_status();
 require 'dao.php';
-$carouselContent = get_plats('localhost', 'district', 'jeoffrey', 'jojo123');
-$carouselCategorie = get_categories('localhost', 'district', 'jeoffrey', 'jojo123');
+$carouselContent = get_plats('localhost', 'lavallee', 'lavallee', 'Admin1234');
+$carouselCategorie = get_categories('localhost', 'lavallee', 'lavallee', 'Admin1234');
 
 if ($session_status == PHP_SESSION_ACTIVE) {
     echo "Une session est active.";
