@@ -12,7 +12,7 @@ require_once 'db_connection.php';
 
 // Récupérer l'ID de l'utilisateur à partir de son pseudo
 $pseudo = $_SESSION['pseudo'];
-$requete_utilisateur = $conn->prepare("SELECT id FROM utilisateur WHERE pseudo = :pseudo");
+$requete_utilisateur = $db->prepare("SELECT id FROM utilisateur WHERE pseudo = :pseudo");
 $requete_utilisateur->bindParam(':pseudo', $pseudo);
 $requete_utilisateur->execute();
 $resultat_utilisateur = $requete_utilisateur->fetch(PDO::FETCH_ASSOC);
@@ -24,8 +24,8 @@ if (!$resultat_utilisateur) {
 $utilisateur_id = $resultat_utilisateur['id'];
 
 // Fonction pour récupérer les plats par catégorie
-function getPlatsParCategorie($conn, $categorie_id) {
-    $requete_plats = $conn->prepare("SELECT * FROM plat WHERE id_categorie = :categorie_id AND active = 'Yes'");
+function getPlatsParCategorie($db, $categorie_id) {
+    $requete_plats = $db->prepare("SELECT * FROM plat WHERE id_categorie = :categorie_id AND active = 'Yes'");
     $requete_plats->bindParam(':categorie_id', $categorie_id);
     $requete_plats->execute();
     return $requete_plats->fetchAll(PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@ function getPlatsParCategorie($conn, $categorie_id) {
     <!-- Boucle pour afficher les plats par catégorie -->
     <?php
     // Récupérer les catégories
-    $requete_categories = $conn->prepare("SELECT * FROM categorie WHERE active = 'Yes'");
+    $requete_categories = $db->prepare("SELECT * FROM categorie WHERE active = 'Yes'");
     $requete_categories->execute();
     $categories = $requete_categories->fetchAll(PDO::FETCH_ASSOC);
 
@@ -60,7 +60,7 @@ function getPlatsParCategorie($conn, $categorie_id) {
         echo '<h2>' . $categorie['libelle'] . '</h2>';
 
         // Récupérer les plats par catégorie
-        $plats = getPlatsParCategorie($conn, $categorie['id']);
+        $plats = getPlatsParCategorie($db, $categorie['id']);
 
         // Afficher les plats
         echo '<div class="row">';
