@@ -16,17 +16,13 @@
             echo "Les mots de passe ne correspondent pas.";
         } else {
             // Connexion à la base de données en utilisant PDO
-            $servername = "localhost"; // Remplacez par le nom de votre serveur
-            $username = "jeoffrey"; // Remplacez par votre nom d'utilisateur de la base de données
-            $password_db = "jojo123"; // Remplacez par votre mot de passe de la base de données
-            $dbname = "district"; // Remplacez par le nom de votre base de données
 
             try {
-                $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password_db);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $db = new PDO('mysql:host=localhost;dbname=lavallee', 'lavallee', 'Admin1234');
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 // Préparation de la requête d'insertion
-                $stmt = $conn->prepare("INSERT INTO utilisateur (pseudo, email, mdp) VALUES (:pseudo, :email, :mdp)");
+                $stmt = $db->prepare("INSERT INTO utilisateur (pseudo, email, mdp) VALUES (:pseudo, :email, :mdp)");
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Hasher le mot de passe
 
                 // Liaison des paramètres
